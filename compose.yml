@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres
+    container_name: mini_ecommerce
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: scelloo_user
+      POSTGRES_PASSWORD: scelloo_pass
+      POSTGRES_DB: scelloo_db
+    volumes:
+      - scelloo_data:/var/lib/postgresql/data
+
+volumes:
+  scelloo_data:
