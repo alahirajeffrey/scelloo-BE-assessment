@@ -1,0 +1,15 @@
+## Scello Backend Assessment Submission
+
+This repo contains code of my submission for the Scello Backend Assessment.
+
+### Requirements
+
+- [Docker](https://www.docker.com/) and [Docker compose](https://docs.docker.com/compose/install/)
+- [Node](https://nodejs.org/en/download/package-manager?utm_cta=website-data-cloud-dummies)
+
+### How to setup
+
+- Clone repository using `git clone https://github.com/alahirajeffrey/scelloo-BE-assessment.git`
+- Open terminal and navigate to the cloned repository
+- Run the command `docker compose up -d` to setup the dev postgres db using docker compose. The `-d` flag runs the containers in detached mode.
+- Create `.env` file and populate using the `.env.example` file.
