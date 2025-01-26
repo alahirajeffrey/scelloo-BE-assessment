@@ -1,4 +1,4 @@
-const validate = (schema: any) => (req: any, res: any, next: any) => {
+export const validate = (schema: any) => (req: any, res: any, next: any) => {
   try {
     schema.parse(req.body);
     next();
