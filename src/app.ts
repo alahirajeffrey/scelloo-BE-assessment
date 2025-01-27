@@ -20,8 +20,6 @@ sequelize
     sequelize.sync({ force: true });
   });
 
-// f
-
 // setup server
 app.use(helmet());
 app.use(cors({ origin: "*" }));
@@ -32,7 +30,7 @@ app.use(express.json());
 
 // setup routes
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/product", productRouter);
+app.use("/api/v1/products", productRouter);
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
