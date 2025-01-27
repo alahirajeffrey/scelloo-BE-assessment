@@ -1,4 +1,5 @@
 import { Table, Column, Model, DataType } from "sequelize-typescript";
+import { UserEnum } from "../enums";
 
 @Table({
   tableName: "users",
@@ -16,4 +17,10 @@ export class User extends Model {
     allowNull: false,
   })
   password!: string;
+
+  @Column({
+    type: DataType.ENUM,
+    allowNull: false,
+  })
+  userType!: UserEnum;
 }
