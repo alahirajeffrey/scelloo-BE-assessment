@@ -9,6 +9,7 @@ import jwt from "jsonwebtoken";
 
 const authRouter = Router();
 
+// add try catch blocks
 authRouter.post(
   "/register/admin",
   validate(registerUserValidation),
