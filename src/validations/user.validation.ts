@@ -14,7 +14,7 @@ export const registerUserValidation = z.object({
     }),
 });
 
-export const deleteUserValidation = z.object({
+export const loginUserValidation = z.object({
   email: z.string().email({}),
   password: z.string(),
 });
