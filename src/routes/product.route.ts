@@ -34,9 +34,9 @@ productRouter.patch(
     try {
       const product = await Product.findByPk(req.params.id);
       if (!product) {
-        return res.status(404).json({ error: "Product not found" });
+        res.status(404).json({ error: "Product not found" });
       }
-      await product.update(req.body);
+      await product!.update(req.body);
       res.json(product);
     } catch (error: any) {
       res.status(400).json({ error: error.message });
@@ -50,9 +50,9 @@ productRouter.get(
   asyncHandler(async (req: Request, res: Response) => {
     try {
       const products = await Product.findAll();
-      return res.status(200).json(products);
+      res.status(200).json(products);
     } catch (error) {
-      return res.status(500).json({ error: (error as Error).message });
+      res.status(500).json({ error: (error as Error).message });
     }
   })
 );
@@ -64,7 +64,7 @@ productRouter.get(
     try {
       const product = await Product.findByPk(req.params.id);
       if (!product) {
-        return res.status(404).json({ error: "Product not found" });
+        res.status(404).json({ error: "Product not found" });
       }
       res.status(200).json(product);
     } catch (error: any) {
@@ -81,12 +81,12 @@ productRouter.delete(
     try {
       const product = await Product.findByPk(req.params.productId);
       if (!product) {
-        return res.status(404).json({ error: "Product not found" });
+        res.status(404).json({ error: "Product not found" });
       }
-      await product.destroy();
+      await product!.destroy();
       res.status(204).send();
     } catch (error: any) {
-      return res.status(500).json({ error: error.message });
+      res.status(500).json({ error: error.message });
     }
   })
 );
