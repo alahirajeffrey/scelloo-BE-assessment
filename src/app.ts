@@ -7,7 +7,6 @@ import morgan from "morgan";
 import { productRouter, authRouter } from "./routes";
 
 const app = express();
-const port = process.env.PORT || 3000;
 
 // connect to the database
 sequelize
@@ -32,6 +31,4 @@ app.use(express.json());
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/products", productRouter);
 
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
+export default app;
