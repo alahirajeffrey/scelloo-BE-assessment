@@ -19,7 +19,7 @@ export class User extends Model {
   password!: string;
 
   @Column({
-    type: DataType.ENUM,
+    type: DataType.ENUM(...Object.values(UserEnum)),
     allowNull: false,
   })
   userType!: UserEnum;
