@@ -1,7 +1,11 @@
 import { Request, Response, NextFunction } from "express";
 
+interface AuthenticatedRequest extends Request {
+  user?: { id: string; email: string; userType: string };
+}
+
 export const isAdmin = (
-  req: Request,
+  req: AuthenticatedRequest,
   res: Response,
   next: NextFunction
 ): void => {
