@@ -30,14 +30,31 @@ productRouter.patch(
 
 productRouter.get(
   "/all",
-  validate(createProductValidation),
-  asyncHandler(async (req: Request, res: Response) => {})
+  isLoggedIn,
+  asyncHandler(async (req: Request, res: Response) => {
+    try {
+      const products = await Product.findAll();
+      return res.status(200).json(products);
+    } catch (error) {
+      return res.status(500).json({ error: (error as Error).message });
+    }
+  })
 );
 
 productRouter.get(
   "/:productId",
-  validate(createProductValidation),
-  asyncHandler(async (req: Request, res: Response) => {})
+  isLoggedIn,
+  asyncHandler(async (req: Request, res: Response) => {
+    try {
+      const product = await Product.findByPk(req.params.id);
+      if (!product) {
+        return res.status(404).json({ error: "Product not found" });
+      }
+      res.status(200).json(product);
+    } catch (error) {
+      res.status(500).json({ error: (error as Error).message });
+    }
+  })
 );
 
 productRouter.delete(
