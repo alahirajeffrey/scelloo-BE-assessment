@@ -51,16 +51,28 @@ productRouter.get(
         return res.status(404).json({ error: "Product not found" });
       }
       res.status(200).json(product);
-    } catch (error) {
-      res.status(500).json({ error: (error as Error).message });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
     }
   })
 );
 
 productRouter.delete(
   "/:productId",
-  validate(createProductValidation),
-  asyncHandler(async (req: Request, res: Response) => {})
+  isLoggedIn,
+  isAdmin,
+  asyncHandler(async (req: Request, res: Response) => {
+    try {
+      const product = await Product.findByPk(req.params.productId);
+      if (!product) {
+        return res.status(404).json({ error: "Product not found" });
+      }
+      await product.destroy();
+      res.status(204).send();
+    } catch (error: any) {
+      return res.status(500).json({ error: error.message });
+    }
+  })
 );
 
 export { productRouter };
